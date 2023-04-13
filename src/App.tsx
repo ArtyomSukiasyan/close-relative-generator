@@ -12,10 +12,19 @@ function App() {
     const wayCount = getRandomNumberInRange(3, 8);
     let closeRelative = "";
 
+    let prevRelativeWayIdx: number = -1;
+
     for (let i = 0; i < wayCount; i++) {
       const relativeWayIdx = getRandomNumberInRange(0, wayToRelative.length);
-      const relativeWay = wayToRelative[relativeWayIdx];
 
+      if (relativeWayIdx === prevRelativeWayIdx) {
+        i--;
+        continue;
+      }
+
+      prevRelativeWayIdx = relativeWayIdx;
+      
+      const relativeWay = wayToRelative[relativeWayIdx];
       closeRelative += `${relativeWay} `;
     }
 
