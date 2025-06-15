@@ -54,8 +54,17 @@
   background-color: #218838;
 }
 
+.result {
+  min-height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease;
+}
+
 .result p {
   font-size: 1.2rem;
   color: #333;
   line-height: 1.4;
+  margin: 0;
 }
