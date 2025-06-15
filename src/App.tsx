@@ -8,15 +8,14 @@ const langs: ELang[] = [ELang.en, ELang.ru, ELang.am];
 
 function App() {
   const [relative, setRelative] = useState("");
-  const [lang, setLang] = useState(ELang.en);
+  const [lang, setLang] = useState<ELang>(ELang.en);
 
   const generateRelative = () => {
     setRelative("");
 
     const wayCount = getRandomNumberInRange(3, 8);
     let closeRelative = "";
-
-    let prevRelativeWayIdx: number = -1;
+    let prevRelativeWayIdx = -1;
 
     for (let i = 0; i < wayCount; i++) {
       const relativeWayIdx = getRandomNumberInRange(
@@ -30,7 +29,6 @@ function App() {
       }
 
       prevRelativeWayIdx = relativeWayIdx;
-
       const relativeWay = wayToRelative[lang][relativeWayIdx];
       closeRelative += `${relativeWay} `;
     }
@@ -44,17 +42,23 @@ function App() {
   return (
     <div className="container">
       <div className="relative">
-        <div>
+        <div className="language-switcher">
           {langs.map((l) => (
-            <div key={l} onClick={() => setLang(l)}>
-              {l}
-            </div>
+            <button
+              key={l}
+              className={`lang-btn ${lang === l ? "active" : ""}`}
+              onClick={() => setLang(l)}
+            >
+              {l.toUpperCase()}
+            </button>
           ))}
         </div>
+
         <button className="button" onClick={generateRelative}>
           {generate[lang]}
         </button>
-        <div>
+
+        <div className="result">
           <p>{relative}</p>
         </div>
       </div>
