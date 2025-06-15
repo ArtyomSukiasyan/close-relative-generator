@@ -39,6 +39,11 @@ function App() {
     setRelative(closeRelative);
   };
 
+  const changeLang = (newLang: ELang) => {
+    setLang(newLang);
+    setRelative("");
+  };
+
   return (
     <div className="container">
       <div className="relative">
@@ -47,7 +52,7 @@ function App() {
             <button
               key={l}
               className={`lang-btn ${lang === l ? "active" : ""}`}
-              onClick={() => setLang(l)}
+              onClick={() => changeLang(l)}
             >
               {l.toUpperCase()}
             </button>
