@@ -2,6 +2,7 @@ import { useState } from "react";
 import getRandomNumberInRange from "./helpers/getRandomNumberInRange";
 import { generate, relativeFinish, wayToRelative } from "./constants/texts";
 import { ELang } from "./models/lang.enum";
+import { title } from "./constants/config";
 import "./App.css";
 
 const langs: ELang[] = [ELang.en, ELang.ru, ELang.am];
@@ -45,29 +46,32 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <div className="relative">
-        <div className="language-switcher">
-          {langs.map((l) => (
-            <button
-              key={l}
-              className={`lang-btn ${lang === l ? "active" : ""}`}
-              onClick={() => changeLang(l)}
-            >
-              {l.toUpperCase()}
-            </button>
-          ))}
-        </div>
+    <>
+      <title>{title[lang]}</title>
+      <div className="container">
+        <div className="relative">
+          <div className="language-switcher">
+            {langs.map((l) => (
+              <button
+                key={l}
+                className={`lang-btn ${lang === l ? "active" : ""}`}
+                onClick={() => changeLang(l)}
+              >
+                {l.toUpperCase()}
+              </button>
+            ))}
+          </div>
 
-        <button className="button" onClick={generateRelative}>
-          {generate[lang]}
-        </button>
+          <button className="button" onClick={generateRelative}>
+            {generate[lang]}
+          </button>
 
-        <div className="result">
-          <p>{relative}</p>
+          <div className="result">
+            <p>{relative}</p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
