@@ -1,8 +1,11 @@
 import { useState } from "react";
+import SiteHead from "./components/SiteHead";
+import LanguageSwitcher from "./components/LanguageSwitcher";
+import GenerateButton from "./components/GenerateButton";
+import RelativeResult from "./components/RelativeResult";
 import getRandomNumberInRange from "./helpers/getRandomNumberInRange";
 import { generate, relativeFinish, wayToRelative } from "./constants/texts";
 import { ELang } from "./models/lang.enum";
-import { title } from "./constants/config";
 import "./App.css";
 
 const langs: ELang[] = [ELang.en, ELang.ru, ELang.am];
@@ -19,10 +22,8 @@ function App() {
     let prevRelativeWayIdx = -1;
 
     for (let i = 0; i < wayCount; i++) {
-      const relativeWayIdx = getRandomNumberInRange(
-        0,
-        wayToRelative[lang].length
-      );
+      const maxNum = wayToRelative[lang].length;
+      const relativeWayIdx = getRandomNumberInRange(0, maxNum);
 
       if (relativeWayIdx === prevRelativeWayIdx) {
         i--;
@@ -40,35 +41,18 @@ function App() {
     setRelative(closeRelative);
   };
 
-  const changeLang = (newLang: ELang) => {
-    setLang(newLang);
-    setRelative("");
-  };
-
   return (
     <>
-      <title>{title[lang]}</title>
+      <SiteHead lang={lang} />
       <div className="container">
         <div className="relative">
-          <div className="language-switcher">
-            {langs.map((l) => (
-              <button
-                key={l}
-                className={`lang-btn ${lang === l ? "active" : ""}`}
-                onClick={() => changeLang(l)}
-              >
-                {l.toUpperCase()}
-              </button>
-            ))}
-          </div>
-
-          <button className="button" onClick={generateRelative}>
-            {generate[lang]}
-          </button>
-
-          <div className="result">
-            <p>{relative}</p>
-          </div>
+          <LanguageSwitcher
+            langs={langs}
+            selectedLang={lang}
+            onChangeLang={setLang}
+          />
+          <GenerateButton onClick={generateRelative} label={generate[lang]} />
+          <RelativeResult text={relative} />
         </div>
       </div>
     </>
