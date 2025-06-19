@@ -40,7 +40,7 @@ export const wayToRelative = {
     "grandfather's",
     "grandmother's",
     "neighbor's",
-    "beloved's",
+    "beloved",
     "dog's",
     "friend's",
   ],
