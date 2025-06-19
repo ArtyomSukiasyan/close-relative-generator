@@ -49,7 +49,10 @@ function App() {
           <LanguageSwitcher
             langs={langs}
             selectedLang={lang}
-            onChangeLang={setLang}
+            onChangeLang={(newLang) => {
+              setLang(newLang);
+              setRelative("");
+            }}
           />
           <GenerateButton onClick={generateRelative} label={generate[lang]} />
           <RelativeResult text={relative} />
