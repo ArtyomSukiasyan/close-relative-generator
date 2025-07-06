@@ -1,6 +1,7 @@
 export default function PrivacyPage() {
   return (
-    <>
+    <> 
+      <title>Privacy Policy | Close Relative Generator</title>
       <h1>Privacy Policy</h1>
       <p>
         At Google Playmarket, we take your privacy very seriously. This Privacy
