@@ -18,21 +18,21 @@ function Home() {
     setRelative("");
 
     const wayCount = getRandomNumberInRange(3, 8);
+    const usedIndices = new Set<number>();
+    const maxNum = wayToRelative[lang].length;
+
+    const finalWayCount = Math.min(wayCount, maxNum);
+
     let closeRelative = "";
-    let prevRelativeWayIdx = -1;
 
-    for (let i = 0; i < wayCount; i++) {
-      const maxNum = wayToRelative[lang].length;
-      const relativeWayIdx = getRandomNumberInRange(0, maxNum);
-
-      if (relativeWayIdx === prevRelativeWayIdx) {
-        i--;
+    while (usedIndices.size < finalWayCount) {
+      const idx = getRandomNumberInRange(0, maxNum);
+      if (usedIndices.has(idx)) {
         continue;
       }
-
-      prevRelativeWayIdx = relativeWayIdx;
-      const relativeWay = wayToRelative[lang][relativeWayIdx];
-      closeRelative += `${relativeWay} `;
+      
+      usedIndices.add(idx);
+      closeRelative += `${wayToRelative[lang][idx]} `;
     }
 
     const relativeIdx = getRandomNumberInRange(0, relativeFinish[lang].length);
