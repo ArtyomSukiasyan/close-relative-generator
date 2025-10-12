@@ -2,7 +2,8 @@
   "expo": {
     "name": "Close Relative Generator",
     "slug": "close-relative-generator",
-    "version": "1.0.0",
+    "version": "1.0.1",
+    "sdkVersion": "54.0.0",
     "orientation": "portrait",
     "icon": "./assets/favicon.png",
     "userInterfaceStyle": "light",
@@ -20,6 +21,7 @@
         "foregroundImage": "./assets/favicon.png",
         "backgroundColor": "#ffffff"
       },
+      "versionCode": 2,
       "edgeToEdgeEnabled": true,
       "package": "com.chess_arbiter.closerelativegenerator"
     },
